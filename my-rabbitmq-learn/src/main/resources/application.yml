@@ -1,0 +1,15 @@
+server:
+  port: 8021
+
+spring:
+#给项目来个名字
+  application:
+    name: my-rabbitmq-learn
+    #配置rabbitMq 服务器
+    rabbitmq:
+      host: 127.0.0.1
+      port: 5672
+      username: cmy
+      password: 123123
+      #虚拟host 可以不设置,使用server默认host
+#      virtual-host: JCcccHost
