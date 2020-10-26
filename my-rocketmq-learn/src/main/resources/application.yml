@@ -1,3 +1,5 @@
+server:
+  port: 8081
 
 rocketmq:
   # 生产者配置
@@ -33,5 +35,3 @@ plat:
   plat-topic: cmy-topic
   plat-tag: cmy-tag
 
-server:
-  port: 8081
