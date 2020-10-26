@@ -1,4 +1,8 @@
-package com.cmy.demo2;
+package com.example.mykafkalearn.demo2;
+
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 import java.util.Collections;
 import java.util.Properties;

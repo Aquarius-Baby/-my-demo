@@ -1,4 +1,4 @@
-package com.cmy.kafaka.demo;
+package com.example.mykafkalearn.demo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

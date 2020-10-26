@@ -1,4 +1,4 @@
-package com.cmy.demo2;
+package com.example.mykafkalearn.demo2;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;

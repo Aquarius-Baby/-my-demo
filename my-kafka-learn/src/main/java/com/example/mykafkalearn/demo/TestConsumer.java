@@ -1,4 +1,4 @@
-package com.cmy.kafaka.demo;
+package com.example.mykafkalearn.demo;
 
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
