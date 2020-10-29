@@ -10,14 +10,14 @@ import java.util.Optional;
 
 
 @Component
-public class TestConsumer {
+public class TestConsumer2 {
 
-    @KafkaListener(topics = {"${spring.kafka.kafka-consumer1.topic}"}, groupId = "${spring.kafka.kafka-consumer1.group-id}")
+    @KafkaListener(topics = {"test"})
     public void receive(ConsumerRecord<?, ?> record, Acknowledgment acknowledgment) {
         Optional<?> kafkaMessage = Optional.ofNullable(record.value());
         if (kafkaMessage.isPresent()) {
             Object message = kafkaMessage.get();
-            System.out.println(String.format("demo consumer 消费 ====> %s" , message));
+            System.out.println(String.format("demo consumer2 消费 ====> %s" , message));
             acknowledgment.acknowledge();
         }
     }

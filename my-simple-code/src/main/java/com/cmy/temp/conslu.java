@@ -10,24 +10,25 @@ import java.util.Map;
 public class conslu {
     public static void main(String[] args) {
         int startYear = 2021;
-        int endYear = 2050;
+        int endYear = 2043;
         int stopYear = 2043;
-        test();
-        System.out.println("====================");
+        test(20, 2500);
+//        System.out.println("====================");
         test1(startYear, endYear, stopYear);
     }
 
-    static void test() {
+    static void test(int year, int principal) {
         double monthProportion = 0.0095;
-        double principal = 0.25;
-        double total = principal;
+        double total = 0;
         double principalTotal = principal;
 
-        int month = 24;
+        int month = 12 * year;
         for (int i = 1; i <= month; i++) {
-            total = total * (1 + monthProportion);
-            System.out.println(String.format("%s : 投入 %s  余额：%s", i, principalTotal, total));
             total += principal;
+            total = total * (1 + monthProportion);
+            if (i % 12 == 0) {
+                System.out.println(String.format("%s 年: 投入 %s  余额：%s", i / 12, principalTotal, total));
+            }
             principalTotal = principalTotal + principal;
         }
     }

@@ -10,7 +10,6 @@ import java.util.Properties;
 public class ProducerMainTest {
 
     public static void main(String[] args) {
-
         Properties props = new Properties();
 
         //broker地址

@@ -36,11 +36,11 @@
             <version>1.2.59</version>
         </dependency>
 
-        <!--        kafaka-->
+        <!-- kafaka-->
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
-            <version>2.2.6.RELEASE</version>
+            <version>2.5.6.RELEASE</version>
         </dependency>
 
         <dependency>

@@ -1,2 +1,39 @@
 server:
   port: 8021
+
+spring:
+  kafka:
+    bootstrap-servers: 10.101.60.32:9092
+    listener:
+      concurrency: 10
+      ack-mode: MANUAL_IMMEDIATE
+      poll-timeout: 1500
+    #默认的消费者配置
+    consumer:
+      group-id: testDemo
+      # earliest ：在偏移量无效的情况下，消费者将从起始位置读取分区的记录
+      auto-offset-reset: latest
+      # 是否自动提交偏移量，默认值是true,为了避免出现重复数据和数据丢失，可以把它设置为false,然后手动提交偏移量
+      enable-auto-commit: false
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties: {session.timeout.ms: 6000, auto.offset.reset: earliest}
+
+    #默认的生产者配置
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      batch-size: 65536
+      buffer-memory: 524288
+
+    kafka-producer1:
+      servers: 10.101.60.32:9092
+      acks: all
+      retries: 0
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+    kafka-consumer1:
+      group-id: reportConsumer
+      topic: cmy-test2
