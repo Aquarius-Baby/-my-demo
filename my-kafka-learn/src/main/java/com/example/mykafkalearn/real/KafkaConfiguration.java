@@ -18,12 +18,12 @@ import java.util.Properties;
 public class KafkaConfiguration {
 
     @Bean(name = "kafkaTemplate1")
-    public KafkaProducer<String, String> kafkaTemplate1(@Value("${spring.kafka.kafka-producer1.servers}") String servers,
-                                                        @Value("${spring.kafka.kafka-producer1.acks}") String acks,
-                                                        @Value("${spring.kafka.kafka-producer1.retries}") String retries,
-                                                        @Value("${spring.kafka.kafka-producer1.buffer-memory}") Long memory,
-                                                        @Value("${spring.kafka.kafka-producer1.key-serializer}") String keySerializer,
-                                                        @Value("${spring.kafka.kafka-producer1.value-serializer}") String valueSerializer) {
+    public KafkaProducer<String, String> kafkaTemplate1(@Value("${spring.kafka.producer1.servers}") String servers,
+                                                        @Value("${spring.kafka.producer1.acks}") String acks,
+                                                        @Value("${spring.kafka.producer.retries}") String retries,
+                                                        @Value("${spring.kafka.producer.buffer-memory}") Long memory,
+                                                        @Value("${spring.kafka.producer.key-serializer}") String keySerializer,
+                                                        @Value("${spring.kafka.producer.value-serializer}") String valueSerializer) {
         Properties props = new Properties();
         //broker地址
         props.put("bootstrap.servers", servers);

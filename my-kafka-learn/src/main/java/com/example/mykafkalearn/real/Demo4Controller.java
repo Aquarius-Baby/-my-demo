@@ -13,8 +13,9 @@ public class Demo4Controller {
     @GetMapping("/send")
     @ResponseBody
     public String send(@RequestParam(value = "topic") String topic,
+                       @RequestParam(value = "key") String key,
                        @RequestParam(value = "message") String message) {
-        kafkaProducer2.sendMessage(topic, message);
+        kafkaProducer2.sendMessage(topic, key, message);
         return "发送消息成功";
     }
 

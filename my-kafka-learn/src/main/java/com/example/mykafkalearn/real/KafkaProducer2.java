@@ -1,8 +1,5 @@
 package com.example.mykafkalearn.real;
 
-import org.apache.kafka.clients.producer.Producer;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -19,8 +16,21 @@ public class KafkaProducer2 {
     @Resource
     private KafkaUtils kafkaUtils;
 
-    public void sendMessage(String topic, String message) {
-        System.out.println("向kafka中生产消息:" + message);
-        kafkaUtils.sendMessage(topic, message);
+    public void sendMessage(String topic, String key, String message) {
+        int partition = 0;
+        switch (key) {
+            case "tke_01":
+                partition = 0;
+                break;
+            case "tke_02":
+                partition = 1;
+                break;
+            case "tke_03":
+                partition = 2;
+                break;
+            default:
+                break;
+        }
+        kafkaUtils.sendMessage(topic, partition, key, message);
     }
 }

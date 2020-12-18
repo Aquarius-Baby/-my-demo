@@ -12,7 +12,7 @@ import java.util.Optional;
 @Component
 public class TestConsumer {
 
-    @KafkaListener(topics = {"${spring.kafka.kafka-consumer1.topic}"}, groupId = "${spring.kafka.kafka-consumer1.group-id}")
+//    @KafkaListener(topics = {"${spring.kafka.kafka-consumer1.topic}"}, groupId = "${spring.kafka.kafka-consumer1.group-id}")
     public void receive(ConsumerRecord<?, ?> record, Acknowledgment acknowledgment) {
         Optional<?> kafkaMessage = Optional.ofNullable(record.value());
         if (kafkaMessage.isPresent()) {

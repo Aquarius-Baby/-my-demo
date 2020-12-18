@@ -14,9 +14,15 @@ public class conslu {
         int stopYear = 2043;
         test(20, 2500);
 //        System.out.println("====================");
-        test1(startYear, endYear, stopYear);
+//        test1(startYear, endYear, stopYear);
     }
 
+    /**
+     * 按月计算
+     *
+     * @param year
+     * @param principal
+     */
     static void test(int year, int principal) {
         double monthProportion = 0.0095;
         double total = 0;
@@ -33,6 +39,13 @@ public class conslu {
         }
     }
 
+    /**
+     * 按年计算
+     *
+     * @param startYear
+     * @param endYear
+     * @param stopYear
+     */
     static void test1(int startYear, int endYear, int stopYear) {
         double yearProportion = 0.1;
         // 3

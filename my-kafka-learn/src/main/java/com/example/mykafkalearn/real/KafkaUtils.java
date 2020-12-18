@@ -26,25 +26,15 @@ public class KafkaUtils {
     @Resource(name = "kafkaTemplate1")
     private KafkaProducer<String, String> kafkaTemplate1;
 
-    public boolean sendMessage(String topicName, String value) {
+    public boolean sendMessage(String topicName, Integer partition, String key, String value) {
         try {
-            logger.info("发送topic消息体：{}", value);
-            Future<RecordMetadata> res = kafkaTemplate1.send(new ProducerRecord<>(topicName, value));
-            System.out.println(res);
+            logger.info(String.format("向kafka中生产消息 topicName:%s, partition:%s, key:%s ", topicName, partition, key));
+            Future<RecordMetadata> res = kafkaTemplate1.send(new ProducerRecord<>(topicName, partition, key, value));
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("发送topic消息体失败：{}", value);
             return false;
         }
     }
-
-    public boolean sendMessage(String topicName, Map<Object, Object> value) {
-        logger.info("发送topic消息体：{}", JSONObject.toJSONString(value));
-        String array = JSONObject.toJSONString(value);
-        Future<RecordMetadata> res = kafkaTemplate1.send(new ProducerRecord<>(topicName, array));
-        System.out.println(res);
-        return true;
-    }
-
 
 }
