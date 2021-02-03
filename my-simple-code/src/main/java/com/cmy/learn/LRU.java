@@ -36,7 +36,5 @@ class LRU<K, V> extends LinkedHashMap<K, V> {
         System.out.println(lru.toString());
         lru.put("1","d");
         System.out.println(lru.toString());
-
-
     }
 }

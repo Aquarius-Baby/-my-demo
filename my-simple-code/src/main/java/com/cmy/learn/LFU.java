@@ -6,26 +6,26 @@ import java.util.Map;
 
 /**
  * 最近最少使用算法
- *
+ * <p>
  * 如果一个数据在最近一段时间很少被访问到，那么可以认为在将来它被访问的可能性也很小。
  * 因此，当空间满时，最小频率访问的数据最先被淘汰
  *
- * @param <k>
- * @param <v>
+ * @param <K>
+ * @param <V>
  */
-public class LFU<k, v> {
+public class LFU<K, V> {
     private final int capcity;
 
-    private Map<k, v> cache = new HashMap<>();
+    private Map<K, V> cache = new HashMap<>();
 
-    private Map<k, HitRate> count = new HashMap<>();
+    private Map<K, HitRate> count = new HashMap<>();
 
     public LFU(int capcity) {
         this.capcity = capcity;
     }
 
-    public void put(k key, v value) {
-        v v = cache.get(key);
+    public void put(K key, V value) {
+        V v = cache.get(key);
         if (v == null) {
             if (cache.size() == capcity) {
                 removeElement();
@@ -37,8 +37,8 @@ public class LFU<k, v> {
         cache.put(key, value);
     }
 
-    public v get(k key) {
-        v value = cache.get(key);
+    public V get(K key) {
+        V value = cache.get(key);
         if (value != null) {
             addHitCount(key);
             return value;
@@ -54,7 +54,7 @@ public class LFU<k, v> {
     }
 
     //更新访问元素状态
-    private void addHitCount(k key) {
+    private void addHitCount(K key) {
         HitRate hitRate = count.get(key);
         hitRate.hitCount = hitRate.hitCount + 1;
         hitRate.lastTime = System.nanoTime();
@@ -62,11 +62,11 @@ public class LFU<k, v> {
 
     //内部类
     class HitRate implements Comparable<HitRate> {
-        private k key;
+        private K key;
         private int hitCount;
         private long lastTime;
 
-        private HitRate(k key, int hitCount, long lastTime) {
+        private HitRate(K key, int hitCount, long lastTime) {
             this.key = key;
             this.hitCount = hitCount;
             this.lastTime = lastTime;
