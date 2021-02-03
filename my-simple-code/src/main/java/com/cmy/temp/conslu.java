@@ -1,7 +1,5 @@
 package com.cmy.temp;
 
-import java.util.Map;
-
 /**
  * @Author: cmy
  * @Date: Created in  2020/10/23 4:06 下午
@@ -9,46 +7,30 @@ import java.util.Map;
  */
 public class conslu {
     public static void main(String[] args) {
-        int startYear = 2021;
-        int endYear = 2043;
-        int stopYear = 2043;
-        test(20, 2500);
-//        System.out.println("====================");
-//        test1(startYear, endYear, stopYear);
+        coinBCH(3000, 3500);
+        coinBCH(3000, 4000);
+        coinBCH(3000, 4500);
+
+        System.out.println("============");
+        coinBCH(4000, 5000);
+
+        //        test1(2021, 2043, 2043);
     }
 
-    /**
-     * 按月计算
-     *
-     * @param year
-     * @param principal
-     */
-    static void test(int year, int principal) {
-        double monthProportion = 0.0095;
-        double total = 0;
-        double principalTotal = principal;
-
-        int month = 12 * year;
-        for (int i = 1; i <= month; i++) {
-            total += principal;
-            total = total * (1 + monthProportion);
-            if (i % 12 == 0) {
-                System.out.println(String.format("%s 年: 投入 %s  余额：%s", i / 12, principalTotal, total));
-            }
-            principalTotal = principalTotal + principal;
-        }
+    static void coinBCH(double current, double except) {
+        double res = (2000 - 0.1259) / (except - current);
+        System.out.println(res * current);
     }
 
     /**
      * 按年计算
      *
-     * @param startYear
-     * @param endYear
-     * @param stopYear
+     * @param startYear 开始存入年份
+     * @param endYear   停止存入年份
+     * @param stopYear  开始取出年份
      */
-    static void test1(int startYear, int endYear, int stopYear) {
+    static void test1(int yearMoney, int startYear, int endYear, int stopYear) {
         double yearProportion = 0.1;
-        // 3
         double principal = 3;
         double total = 0;
         double principalTotal = 0;
@@ -64,5 +46,25 @@ public class conslu {
                 System.out.println(String.format("%s年末 -- %s: 支出 %s  余额：%s", year, year - 1993, yearCost, total));
             }
         }
+    }
+
+
+    static void test2(int yearMoney, int yearProportion, int startYear, int endYear, int stopYear, int yearCost) {
+        int totalCost = 0;
+        int summary = 0;
+
+        for (int year = startYear; year < endYear; year++) {
+//            if (year < stopYear) {
+//
+//                total = total * (1 + yearProportion) + principal;
+//                principalTotal = principalTotal + principal;
+//                System.out.println(String.format("%s年末 -- %s: 投入 %s  余额：%s", year, year - 1993, principalTotal, total));
+//            } else {
+//                total = total * (1 + yearProportion);
+//                total = total - yearCost;
+//                System.out.println(String.format("%s年末 -- %s: 支出 %s  余额：%s", year, year - 1993, yearCost, total));
+//            }
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.mykafkalearn.real;
 
+import com.example.mykafkalearn.util.KafkaUtils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
@@ -11,7 +12,7 @@ import javax.annotation.Resource;
  */
 
 @Component
-public class KafkaProducer2 {
+public class KafkaProducer {
 
     @Resource
     private KafkaUtils kafkaUtils;
@@ -19,13 +20,13 @@ public class KafkaProducer2 {
     public void sendMessage(String topic, String key, String message) {
         int partition = 0;
         switch (key) {
-            case "tke_01":
+            case "black":
                 partition = 0;
                 break;
-            case "tke_02":
+            case "white":
                 partition = 1;
                 break;
-            case "tke_03":
+            case "red":
                 partition = 2;
                 break;
             default:

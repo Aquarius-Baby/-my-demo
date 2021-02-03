@@ -1,0 +1,54 @@
+diff --git a/app/Http/Controllers/PersonController.php b/app/Http/Controllers/PersonController.php
+new file mode 100644
+index 0000000..ac4d26c
+--- /dev/null
++++ b/app/Http/Controllers/PersonController.php
+@@ -0,0 +1,18 @@
++<?php
++
++namespace App\Http\Controllers;
++
++
++include_once("/root/work/blog/prepend.php");
++
++
++class PersonController extends Controller
++{
++
++    public function delete()
++    {
++        return 'delete person';
++    }
++
++
++}
+diff --git a/app/Http/Controllers/StudentController.php b/app/Http/Controllers/StudentController.php
+index 15ac66b..ba1387a 100644
+--- a/app/Http/Controllers/StudentController.php
++++ b/app/Http/Controllers/StudentController.php
+@@ -23,4 +23,12 @@ class StudentController extends Controller
+     public function list(){
+         return 'studentList';
+     }
++
++    public function find(){
++        return 'find student 1 ';
++    }
++
++    public function add(){
++        return 'add student 1 ';
++    }
+ }
+diff --git a/routes/web.php b/routes/web.php
+index adecc10..6bede8a 100644
+--- a/routes/web.php
++++ b/routes/web.php
+@@ -19,5 +19,7 @@ $router->get('test', 'UserController@index');
+ 
+ $router->get('student', 'StudentController@student');
+ $router->get('studentList', 'StudentController@list');
+-
++$router->get('studentFind', 'StudentController@find');
++$router->get('studentAdd', 'StudentController@add');
++$router->get('delete', 'PersonController@delete');
+ 

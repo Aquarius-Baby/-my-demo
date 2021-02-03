@@ -1,8 +1,6 @@
-package com.example.mykafkalearn.real;
+package com.example.mykafkalearn.configuration;
 
-import com.alibaba.fastjson.support.spring.FastJsonRedisSerializer;
 import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.Producer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -18,8 +16,8 @@ import java.util.Properties;
 public class KafkaConfiguration {
 
     @Bean(name = "kafkaTemplate1")
-    public KafkaProducer<String, String> kafkaTemplate1(@Value("${spring.kafka.producer1.servers}") String servers,
-                                                        @Value("${spring.kafka.producer1.acks}") String acks,
+    public KafkaProducer<String, String> kafkaTemplate1(@Value("${spring.kafka.producer.servers}") String servers,
+                                                        @Value("${spring.kafka.producer.acks}") String acks,
                                                         @Value("${spring.kafka.producer.retries}") String retries,
                                                         @Value("${spring.kafka.producer.buffer-memory}") Long memory,
                                                         @Value("${spring.kafka.producer.key-serializer}") String keySerializer,

@@ -4,6 +4,15 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 最近最少使用算法
+ *
+ * 如果一个数据在最近一段时间很少被访问到，那么可以认为在将来它被访问的可能性也很小。
+ * 因此，当空间满时，最小频率访问的数据最先被淘汰
+ *
+ * @param <k>
+ * @param <v>
+ */
 public class LFU<k, v> {
     private final int capcity;
 

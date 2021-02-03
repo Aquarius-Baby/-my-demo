@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
  * @Description: 消费者
  */
 @Component
-public class KafkaConsumer2 {
+public class KafkaConsumer {
 
     @KafkaListener(topics = {"${spring.kafka.consumer.topic}"}, groupId = "${spring.kafka.consumer.group-id}")
     public void listen(ConsumerRecord record, Acknowledgment acknowledgment) {
@@ -25,26 +25,4 @@ public class KafkaConsumer2 {
             System.err.println("demo3 cmy_topic 消费失败。。。。");
         }
     }
-
-//
-//    @KafkaListener(containerGroup = "test", topicPartitions = {
-//            @TopicPartition(topic = "my_topic_partitions", partitions = {"0"}),
-//
-//    })
-//    public void onMessage0(ConsumerRecord record, Acknowledgment acknowledgment) {
-//        System.out.println("我是分区 0：" + record.topic() + "-" + record.partition() + "-" + record.value());
-//        acknowledgment.acknowledge();
-//    }
-//
-//    @KafkaListener(containerGroup = "test", topicPartitions = {
-//            @TopicPartition(topic = "my_topic_partitions", partitions = {"1", "2"})
-//    })
-//    public void onMessage1(ConsumerRecord record, Acknowledgment acknowledgment) {
-//        System.out.println("我是分区 1：" + record.topic() + "-" + record.partition() + "-" + record.value());
-//        acknowledgment.acknowledge();
-//
-//    }
-//
-
-
 }
