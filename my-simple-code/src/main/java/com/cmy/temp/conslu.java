@@ -1,5 +1,7 @@
 package com.cmy.temp;
 
+import java.util.*;
+
 /**
  * @Author: cmy
  * @Date: Created in  2020/10/23 4:06 下午
@@ -7,64 +9,88 @@ package com.cmy.temp;
  */
 public class conslu {
     public static void main(String[] args) {
-        coinBCH(3000, 3500);
-        coinBCH(3000, 4000);
-        coinBCH(3000, 4500);
+        String[] deadends = {"8887", "8889", "8878", "8898", "8788", "8988", "7888", "9888"};
+        String target = "8888";
 
-        System.out.println("============");
-        coinBCH(4000, 5000);
+//        String[] deadends = {"0201", "0101", "0102", "1212", "2002"};
+//        String target = "0202";
 
-        //        test1(2021, 2043, 2043);
+        int res = openLock(deadends, target);
+        System.out.println(res);
     }
 
-    static void coinBCH(double current, double except) {
-        double res = (2000 - 0.1259) / (except - current);
-        System.out.println(res * current);
-    }
+    public static int openLock(String[] deadends, String target) {
+        // 1.
+        List<String> deadendList = Arrays.asList(deadends);
+        String init = "0000";
 
-    /**
-     * 按年计算
-     *
-     * @param startYear 开始存入年份
-     * @param endYear   停止存入年份
-     * @param stopYear  开始取出年份
-     */
-    static void test1(int yearMoney, int startYear, int endYear, int stopYear) {
-        double yearProportion = 0.1;
-        double principal = 3;
-        double total = 0;
-        double principalTotal = 0;
-        double yearCost = 20;
-        for (int year = startYear; year < endYear; year++) {
-            if (year < stopYear) {
-                total = total * (1 + yearProportion) + principal;
-                principalTotal = principalTotal + principal;
-                System.out.println(String.format("%s年末 -- %s: 投入 %s  余额：%s", year, year - 1993, principalTotal, total));
-            } else {
-                total = total * (1 + yearProportion);
-                total = total - yearCost;
-                System.out.println(String.format("%s年末 -- %s: 支出 %s  余额：%s", year, year - 1993, yearCost, total));
+        int step = 0;
+        LinkedList<String> list = new LinkedList<>();
+        LinkedList<String> list2 = new LinkedList<>();
+        list.add(init);
+        Set<String> visit = new HashSet<>();
+        visit.add(init);
+        while (list.size() > 0) {
+            String num = list.pop();
+            if (deadendList.contains(num)) {
+                continue;
+            }
+            if (target.equals(num)) {
+                return step;
+            }
+            // 对nums进行 + -
+            change(visit, num, list2);
+            if (list.size() == 0) {
+                step++;
+                list.addAll(list2);
+                list2 = new LinkedList<>();
             }
         }
+        return -1;
     }
 
-
-    static void test2(int yearMoney, int yearProportion, int startYear, int endYear, int stopYear, int yearCost) {
-        int totalCost = 0;
-        int summary = 0;
-
-        for (int year = startYear; year < endYear; year++) {
-//            if (year < stopYear) {
-//
-//                total = total * (1 + yearProportion) + principal;
-//                principalTotal = principalTotal + principal;
-//                System.out.println(String.format("%s年末 -- %s: 投入 %s  余额：%s", year, year - 1993, principalTotal, total));
-//            } else {
-//                total = total * (1 + yearProportion);
-//                total = total - yearCost;
-//                System.out.println(String.format("%s年末 -- %s: 支出 %s  余额：%s", year, year - 1993, yearCost, total));
-//            }
+    public static void change(Set<String> visit, String num, LinkedList<String> list2) {
+        int[] array = new int[4];
+        for (int i = 0; i < num.length(); i++) {
+            array[i] = num.charAt(i) - '0';
         }
+        for (int i = 0; i < num.length(); i++) {
+            // add
+            int old = array[i];
+            if (old == 9) {
+                array[i] = 0;
+            } else {
+                array[i]++;
+            }
+            String n = getString(array);
+            if (!visit.contains(n)) {
+                list2.add(n);
+                visit.add(n);
+            }
+            array[i] = old;
+        }
+        for (int i = 0; i < num.length(); i++) {
+            // add
+            int old = array[i];
+            if (old == 0) {
+                array[i] = 9;
+            } else {
+                array[i]--;
+            }
+            String n = getString(array);
+            if (!visit.contains(n)) {
+                list2.add(n);
+                visit.add(n);
+            }
+            array[i] = old;
+        }
+    }
 
+    public static String getString(int[] array) {
+        StringBuilder sb = new StringBuilder();
+        for (int i : array) {
+            sb.append("").append(i);
+        }
+        return sb.toString();
     }
 }
